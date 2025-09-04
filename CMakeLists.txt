@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-enable_language(C)
+enable_language(C CXX)
 
 add_library(CherryRB OBJECT)
 target_sources(CherryRB PRIVATE "${CMAKE_CURRENT_LIST_DIR}/chry_ringbuffer.c")
