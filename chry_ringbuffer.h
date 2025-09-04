@@ -21,6 +21,14 @@ typedef struct {
     void *pool;    /*!< Define the memory pointer.              */
 } chry_ringbuffer_t;
 
+
+#ifdef __cplusplus
+}
+#endif
+
+
+namespace{
+    extern "C"{
 extern int chry_ringbuffer_init(chry_ringbuffer_t *rb, void *pool, uint32_t size);
 extern void chry_ringbuffer_reset(chry_ringbuffer_t *rb);
 extern void chry_ringbuffer_reset_read(chry_ringbuffer_t *rb);
@@ -49,8 +57,23 @@ extern void *chry_ringbuffer_linear_read_setup(chry_ringbuffer_t *rb, uint32_t *
 extern uint32_t chry_ringbuffer_linear_write_done(chry_ringbuffer_t *rb, uint32_t size);
 extern uint32_t chry_ringbuffer_linear_read_done(chry_ringbuffer_t *rb, uint32_t size);
 
-#ifdef __cplusplus
-}
-#endif
+    }
+};
 
+template <chry_ringbuffer_t *rb, void *pool, uint32_t size>
+struct RingBuffer{
+    static int init(){
+        return chry_ringbuffer_init(rb,pool,size);
+    }
+    static void reset(){
+        chry_ringbuffer_reset(rb);
+    }
+    static void reset_read(){
+        chry_ringbuffer_resetreset(rb);
+    }
+    static uint32_t get_size(){
+        return chry_ringbuffer_get_size(rb);
+    }
+    static uint32_t get_used(){}
+}
 #endif
