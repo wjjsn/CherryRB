@@ -95,10 +95,9 @@ struct RingBuffer {
         uint8_t *p_byte = &byte;
         return chry_ringbuffer_peek_byte(rb_, p_byte);
     }
-    static bool read_byte(uint8_t byte)
+    static bool read_byte(uint8_t *byte)
     {
-        uint8_t *p_byte = &byte;
-        return chry_ringbuffer_read_byte(rb_, p_byte);
+        return chry_ringbuffer_read_byte(rb_, byte);
     }
     static bool drop_byte()
     {
