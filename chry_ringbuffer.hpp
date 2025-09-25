@@ -49,7 +49,7 @@ extern uint32_t chry_ringbuffer_linear_read_done(chry_ringbuffer_t *rb, uint32_t
 } // namespace
 
 template <chry_ringbuffer_t *rb_, uint8_t *pool_, uint32_t size_>
-struct RingBuffer {
+struct Cherry_RingBuffer {
     static_assert((size_ & (size_ - 1)) == 0, "the size of the memory pool must be a power of 2 !!!");
     static_assert(rb_ != nullptr, "the ringbuffer pointer must be initialized !!!");
     static_assert(pool_ != nullptr, "the memory pool pointer must be initialized !!!");
