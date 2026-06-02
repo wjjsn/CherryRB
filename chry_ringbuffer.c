@@ -5,7 +5,14 @@
  */
 
 #include <string.h>
-#include "chry_ringbuffer.h"
+#include <stdint.h>
+#include <stdbool.h>
+typedef struct {
+    uint32_t in;   /*!< Define the write pointer.               */
+    uint32_t out;  /*!< Define the read pointer.                */
+    uint32_t mask; /*!< Define the write and read pointer mask. */
+    void *pool;    /*!< Define the memory pointer.              */
+} chry_ringbuffer_t;
 
 /*****************************************************************************
 * @brief        init ringbuffer
