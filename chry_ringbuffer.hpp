@@ -8,6 +8,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <array>
 
 typedef struct {
     uint32_t in;   /*!< Define the write pointer.               */
@@ -48,14 +49,17 @@ extern uint32_t chry_ringbuffer_linear_read_done(chry_ringbuffer_t *rb, uint32_t
 }
 } // namespace
 
-template <chry_ringbuffer_t *rb_, uint8_t *pool_, uint32_t size_>
+template <chry_ringbuffer_t *rb_, uint32_t size_>
 struct Cherry_RingBuffer {
+
+    static std::array<uint8_t, size_> pool_;
+
     static_assert((size_ & (size_ - 1)) == 0, "the size of the memory pool must be a power of 2 !!!");
     static_assert(rb_ != nullptr, "the ringbuffer pointer must be initialized !!!");
-    static_assert(pool_ != nullptr, "the memory pool pointer must be initialized !!!");
+    static_assert(pool_.size() != 0, "the memory pool size must be > 0 !!!");
     static int init()
     {
-        return chry_ringbuffer_init(rb_, (void *)pool_, size_);
+        return chry_ringbuffer_init(rb_, (void *)pool_.data(), size_);
     }
     static void reset()
     {
