@@ -1,3 +1,7 @@
+project('CherryRB', 'c', 'cpp',
+    version: '1.0.0',
+)
+
 cherrrb_src = files('chry_ringbuffer.c')
 
 cherrrb_dep = declare_dependency(
