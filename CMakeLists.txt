@@ -5,5 +5,4 @@ add_library(CherryRB OBJECT)
 target_sources(CherryRB PRIVATE "${CMAKE_CURRENT_LIST_DIR}/chry_ringbuffer.c")
 target_include_directories(CherryRB PUBLIC "${CMAKE_CURRENT_LIST_DIR}")
 
-# target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE CherryRB)
-target_link_libraries(${CMAKE_PROJECT_NAME} CherryRB)
+# 使用方式（消费方）: target_link_libraries(<你的目标> PRIVATE CherryRB)
